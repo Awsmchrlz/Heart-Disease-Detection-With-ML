@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Heart Disease Detection</title>
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/PublicStyles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <div class="bodyContainer">
+
+    <div class="topNav">
+      <div class="logo">
+        <a href="/">
+          <img src="/images/logo.png" alt="">
+          <div>Heart Disease Detection</div>
+        </a>
+      </div>
+    
+     <div class="menuList">
+      <span>
+        
+        <a href="/patientRecords">
+          <i class="bi bi-file-earmark-text-fill"></i>
+          Records
+        </a>
+      </span>
+      <span>
+        <a href="/help">
+          <i class="bi bi-info-circle"></i>
+          Help
+        </a>
+      </span>
+      <span>
+        <a href="/auth">
+          <i class="bi bi-box-arrow-in-right"></i>
+          Logout
+        </a>
+      </span>
+     </div>
+    </div>
+    
+    <section class="navSection">
+      <div class="menuContainer">
+        <a href="/">
+          <img src="/images/logo.png" alt="">
+          <div>Heart Disease Detection</div>
+        </a>
+        <hr>
+        <a href="/" class="getPrediction">
+          <div>Get Prediction</div></a>
+        <a href="/patientRecords" class="patientRecords">
+          
+          <div>Patient Records <i class="bi bi-file-earmark-text-fill"></i></div>
+        </a>
+
+        <a href="/help" class="helpAndAbout">
+          
+          <div>Help & More <i class="bi bi-info-circle"></i></div>
+        </a>
+        <br>
+        <br>
+        <br>
+        
+        <a href="/auth/login"><div class="logout">Logout</div></a>
+      <br>
+      </div>
+    </section>
+    <section class="bodySection">
+      
+      <%- body %>
+    </section>
+  </div>
+  <input type="hidden" value="<%=input%>" class="lastRoute">
+</body>
+<script src="/js/PublicScript.js" defer></script>
+</html>

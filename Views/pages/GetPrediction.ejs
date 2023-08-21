@@ -1,0 +1,134 @@
+<style>
+ 
+  
+</style>
+
+<section class="pageContent">
+  <% if (!response) { %>
+  <form method="post" action="/getprediction">
+    <div class="getPredictionFields">
+      
+      <span class="inputFieldContainer">
+        <h4>Sex</h4>
+        <select name="sex">
+          <option value="1">Male</option>
+          <option value="0">Female</option>
+        </select>
+      </span>
+      
+      <span class="inputFieldContainer">
+        <h4>Exercise Induced Angina</h4>
+        <select name="exercise_angina">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </span>
+      
+      <!-- ST depression is often measured in millimeters (mm) and is indicative of the degree of ischemia (lack of oxygen to the heart muscle).
+The typical range for ST depression during exercise stress testing can be anywhere from 0 mm (no depression) to around 3 mm or more, depending on the patient and the clinical context. However, values above 2 mm are often considered clinically significant and indicative of moderate to severe ischemia. -->
+      <span class="inputFieldContainer">
+        <h4>ST Depression (mm)</h4>
+        <select name="st_depression" id="stDepressionSelect">
+            <option value="0">No ST Depression</option>
+            <option value="0.5">0.5 mm</option>
+            <option value="1">1 mm</option>
+            <option value="1.5">1.5 mm</option>
+            <option value="2">2 mm</option>
+            <option value="2.5">2.5 mm</option>
+           
+        </select>
+    </span>
+      <span class="inputFieldContainer">
+        <h4>Chest Pain Type</h4>
+        <select name="chest_pain_type">
+          <option value="atypical_anginal">Atypical Anginal</option>
+          <option value="non_anginal_pain">Non Anginal Pain</option>
+          <option value="typical_angina">Typical Angina</option>
+        </select>
+      </span>
+   
+<span class="inputFieldContainer">
+  <h4>Resting ECG</h4>
+  <select name="resting_ecg" id="restingEcgSelect">
+      <option value="0">Normal</option>
+      <option value="1">ST-T Wave Abnormality</option>
+      <option value="2">Left Ventricular Hypertrophy</option>
+  </select>
+</span>
+
+      </span>
+      <span class="inputFieldContainer">
+        <h4>ST Slope</h4>
+        <select id="st_slope" name="st_slope">
+          
+          <option value="flat">Flat</option>
+          <option value="upslopping">Up Slopping</option>
+        </select>
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Age <div class="valueDisplay" style="padding-left: 10px;">24 </div></h4>
+        <input type="range" min="18" max="80" value="24" class="slider" name="age" id="ageRange">
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Max Blood Pressure <div class="valueDisplay"style="padding-left: 10px;">100</div>(mmHg)</h4>
+        <input type="range" min="80" max="200" value="100" class="slider" name="max_blood_pressure" id="maxBloodPressureRange">
+    </span>
+      <span class="inputFieldContainer">
+        <h4>Cholesterol <div class="valueDisplay" style="padding-left: 10px;">200</div>(mg/dL) </h4>
+        <input type="range" min="100" max="300" value="200" class="slider" name="cholesterol" id="cholesterolRange">
+    </span>
+    <span class="inputFieldContainer">
+      <h4>Fasting Blood Sugar <div class="valueDisplay" style="padding-left: 10px;">100</div>(mg/dL)</h4>
+      <input type="range" min="70" max="200" value="100" class="slider" name="fasting_blood_sugar" id="fastingBloodSugarRange">
+  </span>
+  <span class="inputFieldContainer">
+    <h4>Max Heart Rate <div class="valueDisplay" style="padding-left: 10px;">120</div>(bpm)</h4>
+    <input type="range" min="60" max="220" value="120" class="slider" name="max_heart_rate" id="maxHeartRateRange">
+</span>
+
+    </div>
+    <div class="buttonBox">
+      <button>Get Prediction</button>
+    </div>
+    <input type="hidden" name="st_slope_flat" id="flat">
+    <input type="hidden" name="st_slope_upslopping" id="upSlopping">
+  </form>
+  <% } else { %>
+    <div class="loaderHolder">
+      <span class="loader"></span>
+    </div>
+     <%= response.prediction %> 
+     
+  <% } %>
+</section>
+
+<script defer>
+  
+       // Efficiently set up value displays for sliders
+       const valueDisplays = document.querySelectorAll(".valueDisplay");
+       const sliders = document.querySelectorAll(".slider");
+
+       sliders.forEach((slider, index) => {
+           slider.addEventListener("input", () => {
+               valueDisplays[index].textContent = slider.value;
+           });
+       });
+
+       // Set up ST slope selection
+     
+       
+      
+      setTimeout(function() {
+        window.addEventListener("load", function() {
+          removeLoader();
+        });
+        removeLoader();
+      }, 8000);
+      
+      function removeLoader() {
+        var loader = document.querySelector(".loaderHolder");
+        if (loader) {
+          loader.remove();
+        }
+      }
+</script>

@@ -1,0 +1,147 @@
+<section class="pageContent">
+  <% if(!response){ %>
+  <form method="post" action="/getprediction">
+    <div class="getPredictionFields">
+      <span class="inputFieldContainer">
+        <h4>Age</h4>
+        <input type="text" name="age" />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Sex</h4>
+        <input type="text" />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Resting Blood Pressure</h4>
+        <input type="text" name="resting_blood_pressure" />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Cholestrol</h4>
+        <input type="text" name="cholestrol" />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Fasting Blood Sugar</h4>
+        <input type="text" name="fasting_blood_sugar" />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Max Heart Rate</h4>
+        <input type="text" name="max_heart_rate" />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Excercise Induced Angina</h4>
+        <input type="number" name="excercise_anginal" min="0" max="1" />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>ST Depression</h4>
+        <input type="number" name="st_depression" min="0" max="1" />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Chest Pain Type</h4>
+        <input
+          type="text"
+          placeholder="Atypical Anginal"
+          name="chest_pain_type_atypical_anginal"
+          min="0"
+          max="1"
+        />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Chest Pain Type</h4>
+        <input
+          type="text"
+          placeholder="Non Anginal Pain"
+          name="chest_pain_type_non_anginal"
+          min="0"
+          max="1"
+        />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Chest Pain Type</h4>
+        <input
+          type="text"
+          placeholder="Typical Angina"
+          name="chest_pain_type_typical_anginal"
+          min="0"
+          max="1"
+        />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Resting ECG</h4>
+        <input
+          type="number"
+          placeholder="Normal"
+          name="resting_ecg_normal"
+          min="0"
+          max="1"
+        />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>Resting ECG</h4>
+        <input
+          type="text"
+          placeholder="Left Venticular Hypertrophy"
+          name="resting_ecg_left_venticular_hypertrophy"
+          min="0"
+          max="1"
+        />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>ST Slope</h4>
+        <input
+          type="number"
+          id="flat"
+          placeholder="Flat"
+          name="st_slope_flat"
+          min="0"
+          max="1"
+        />
+      </span>
+      <span class="inputFieldContainer">
+        <h4>ST Slope</h4>
+        <input
+          type="number"
+          id="upSlopping"
+          placeholder="Up Slopping"
+          name="st_slope_upslopping"
+          min="0"
+          max="1"
+        />
+      </span>
+    </div>
+    <div class="buttonBox">
+      <button>Get Prediction</button>
+    </div>
+  </form>
+  <%}else{%>
+     <%=response.prediction%> 
+     
+  <%}%>
+</section>
+
+<script>
+  const flat = document.getElementById("flat");
+  const upSlopping = document.getElementById("upSlopping");
+
+  flat.addEventListener("change", (e) => {
+    if (flat.value <= 1) {
+      upSlopping.value = 1;
+      flat.value = 0;
+
+    } else {
+      upSlopping.value = 0;
+      flat.value = 1;
+
+    }
+  });
+  upSlopping.addEventListener("change", (e) => {
+    if (upSlopping.value <= 1) {
+      flat.value = 1;
+      upSlopping.value = 0;
+    } else {
+      upSlopping.value = 1;
+      flat.value = 0;
+    }
+  });
+
+
+
+</script>
